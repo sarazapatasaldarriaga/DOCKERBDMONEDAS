@@ -1,10 +1,13 @@
---Ejecutar primero
-DROP DATABASE Monedas WITH (FORCE);
---Ejecutar segundo
-CREATE DATABASE Monedas; 
-
 --Para las siguientes instrucciones, se debe cambiar la conexión
+-- el script debe quedar sin instrucciones de creacion o eliminacion de la base
+-- de datos pero solo cuando es docker compose no para la creacion manual
 
+CREATE USER docker;
+CREATE DATABASE monedas;
+
+GRANT ALL PRIVILEGES ON DATABASE monedas TO docker;
+
+\c monedas -- Cambiar la conexion pero esto solo aplica para postgres
 /* Crear tabla MONEDA */
 CREATE TABLE Moneda( 
 	Id SERIAL PRIMARY KEY,
